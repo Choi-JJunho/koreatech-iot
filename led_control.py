@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+import RPi.GPIO as gpio
 from gpio_setup import LED_PIN
 from weather import Weather
 

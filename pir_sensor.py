@@ -1,5 +1,5 @@
 import time
-import RPi.GPIO as GPIO
+import RPi.GPIO as gpio
 from gpio_setup import PIR_PIN
 
 
@@ -8,8 +8,7 @@ def pir_monitoring(queue):
         previous_state = 0  # 이전 상태를 저장할 변수
 
         while True:
-            current_state = GPIO.input(PIR_PIN)  # 현재 상태 읽기
-            print(current_state)
+            current_state = gpio.input(PIR_PIN)  # 현재 상태 읽기
 
             # 상태가 변경되었을 때만 처리
             if current_state != previous_state:

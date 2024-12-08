@@ -4,8 +4,7 @@ from gpio_setup import init_gpio, cleanup_gpio
 from pir_sensor import pir_monitoring
 from led_control import control_led
 from motor_control import control_motor
-from weather import get_weather
-
+from weather import get_weather, Weather
 
 # 프로세스 간 통신을 위한 큐 생성
 queue = Queue()
@@ -14,10 +13,13 @@ queue = Queue()
 def weather_and_control(queue):
     try:
         while True:
-            if queue.get():
-                weather = get_weather()
-                control_led(weather)
-                control_motor(weather)
+            if not queue.empty():
+                if queue.get():
+                    weather = get_weather()
+                    control_led(weather)
+                    control_motor(weather)
+                else:
+                    control_motor(Weather.UNKNOWN)
             time.sleep(0.1)
     except KeyboardInterrupt:
         print("제어 프로세스 종료")

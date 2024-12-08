@@ -1,4 +1,3 @@
-import enum
 from enum import Enum
 
 import requests
@@ -10,14 +9,14 @@ from location import get_location, get_ip
 
 
 class Weather(Enum):
-    맑음 = enum.auto()
-    구름많음 = enum.auto()
-    흐림 = enum.auto()
-    비 = enum.auto()
-    비눈 = enum.auto()
-    눈 = enum.auto()
-    소나기 = enum.auto()
-    UNKNOWN = enum.auto()
+    UNKNOWN = 0
+    맑음 = 1
+    구름많음 = 2
+    흐림 = 3
+    비 = 4
+    비눈 = 5
+    눈 = 6
+    소나기 = 7
 
 
 def get_weather_forecast(base_time, nx, ny):
