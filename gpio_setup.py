@@ -13,3 +13,4 @@ def init_gpio():
 
 def cleanup_gpio():
     gpio.cleanup()
+    print("GPIO cleanup")
