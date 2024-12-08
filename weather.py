@@ -17,6 +17,7 @@ class Weather(Enum):
     비눈 = enum.auto()
     눈 = enum.auto()
     소나기 = enum.auto()
+    UNKNOWN = enum.auto()
 
 
 def get_weather_forecast(base_time, nx, ny):
@@ -116,6 +117,9 @@ def get_weather():
     data = dict()
     for item in forecast_data:
         data[item['category']] = item['value']
+
+    if 'PTY' not in data:
+        return Weather.UNKNOWN
 
     weather = Weather.맑음
     if data['PTY'] == 0:
