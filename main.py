@@ -11,13 +11,13 @@ from weather import get_weather
 queue = Queue()
 
 
-def weather_and_control():
+def weather_and_control(queue):
     try:
         while True:
             if queue.get():
                 weather = get_weather()
                 control_led(weather)
-                control_motor()
+                control_motor(weather)
             time.sleep(0.1)
     except KeyboardInterrupt:
         print("제어 프로세스 종료")
