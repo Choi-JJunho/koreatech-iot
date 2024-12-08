@@ -1,27 +1,47 @@
-from calc import convert_coords
-from location import *
-from weather import *
+# from multiprocessing import Process, Queue
+# import time
+# from gpio_setup import init_gpio, cleanup_gpio
+# from pir_sensor import pir_monitoring
+# from led_control import control_led
+# from motor_control import control_motor
+# from weather import get_weather
+#
+#
+# # 프로세스 간 통신을 위한 큐 생성
+# queue = Queue()
+#
+#
+# def weather_and_control():
+#     try:
+#         while True:
+#             if queue.get():
+#                 weather = get_weather()
+#                 control_led(weather)
+#                 control_motor()
+#             time.sleep(0.1)
+#     except KeyboardInterrupt:
+#         print("제어 프로세스 종료")
 
 
 if __name__ == '__main__':
-    # 위치 정보 가져오기
-    location_json = get_location(ip=get_ip())
-
-    print(location_json)
-
-    # 위도/경도 추출
-    lat = location_json['geoLocation']['lat']
-    lon = location_json['geoLocation']['long']
-
-    print(lat, lon)
-
-    # 기상청 격자 좌표로 변환
-    nx, ny = convert_coords(0, lon, lat)
-
-    print(f"위도/경도: ({lat}, {lon}) -> 기상청 좌표: (nx={nx}, ny={ny})")
-
-    current_time = datetime.now().strftime("%H%M")
-
-    # 변환된 nx, ny 값으로 날씨 예보 조회
-    forecast_data = get_weather_forecast(current_time, nx, ny)
-    extract_forecast_data(forecast_data)
+    from weather import get_weather
+    get_weather()
+    # try:
+    #     # GPIO 초기화
+    #     init_gpio()
+    #
+    #     # 프로세스 생성 및 시작
+    #     pir_process = Process(target=pir_monitoring, args=(queue,))
+    #     control_process = Process(target=weather_and_control, args=(queue,))
+    #
+    #     pir_process.start()
+    #     control_process.start()
+    #
+    #     # 프로세스 종료 대기
+    #     pir_process.join()
+    #     control_process.join()
+    #
+    # except KeyboardInterrupt:
+    #     print("프로그램 종료")
+    # finally:
+    #     cleanup_gpio()
