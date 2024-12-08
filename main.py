@@ -20,6 +20,7 @@ def weather_and_control(queue):
                     control_motor(weather)
                 else:
                     control_motor(Weather.UNKNOWN)
+                    control_led(off=True)
             time.sleep(0.1)
     except KeyboardInterrupt:
         print("제어 프로세스 종료")
