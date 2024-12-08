@@ -1,9 +1,9 @@
 import RPi.GPIO as gpio
 
 # GPIO 핀 번호 상수 정의
-PIR_PIN = 18
+PIR_PIN = 12
 LED_PIN = 24
-MOTOR_PIN = 25
+MOTOR_PIN = 18
 
 def init_gpio():
     gpio.setmode(gpio.BCM)
