@@ -5,7 +5,7 @@ from gpio_setup import PIR_PIN
 def pir_monitoring(queue):
     try:
         while True:
-            if GPIO.input(PIR_PIN):
+            if GPIO.input(PIR_PIN) == 1:
                 print("움직임 감지!")
                 queue.put(True)
                 time.sleep(2)  # 디바운싱
